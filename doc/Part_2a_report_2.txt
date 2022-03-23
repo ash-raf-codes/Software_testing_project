@@ -1,0 +1,55 @@
+Part 2a Report
+
+Please complete part 2a of the project in this file.  There are four files in this folder - each group member should
+use a different file to write their report.  This report must be completed INDIVIDUALLY
+
+Your name:
+Your student number:
+
+Your group members: 1.
+                    2.
+                    3.
+                    4.
+
+Section 1: PMD
+
+For each top-level category (ex. bestpractices, codestyle, etc)  of issue discovered by running the PMD plugin,
+complete the following for one violation of your choice:
+
+1. Top-Level category name:
+
+2. Sub-category:
+
+3. Your explanation of the violation:
+
+4. Is a code fix warranted?  Why or why not?:
+
+
+Section 2: SpotBugs
+
+For each top-level category (ex. Bad practice, Dodgy code, etc) of issue discovered by running the SpotBugs plugin,
+complete the following for one violation of your choice:
+
+1. Top-Level category name:
+
+2. Sub-category:
+
+3. Your explanation of the violation:
+
+4. Is a code fix warranted?  Why or why not?:
+
+
+Section 3: Principles for improving test quality
+
+1. Principle chosen:
+
+2. Author of code analyzed:
+
+3. Fix proposed:
+
+
+Section 4: Coverage Report
+
+1. Types of coverage metrics considered (class, branch, etc):
+
+2. Conclusion:
