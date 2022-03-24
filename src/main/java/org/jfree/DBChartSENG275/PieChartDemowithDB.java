@@ -42,6 +42,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.PreparedStatement;
 
 /**
  * A simple demonstration application showing how to create a pie chart using

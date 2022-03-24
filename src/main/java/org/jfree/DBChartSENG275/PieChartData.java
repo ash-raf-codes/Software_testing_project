@@ -19,12 +19,7 @@ public class PieChartData {
         /* Create SQLite Database Connection */
         Connection conn = null;
         try {
-           // db parameters
-            String url = "jdbc:sqlite:chinook.db";
-            // create a connection to the database
-            conn = DriverManager.getConnection(url);
-            System.out.println("Connection to SQLite has been established.");
-            Statement statement = conn.createStatement( );
+            Statement statement = Connection.Connecting();
 
             ResultSet resultSet = statement.executeQuery("select * from Invoices" );
             while( resultSet.next() ) {
@@ -36,7 +31,8 @@ public class PieChartData {
                 dataset.setValue(country, val);
             }
 
-            conn.close();
+           // conn.close();
+            Connection.extracted();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
