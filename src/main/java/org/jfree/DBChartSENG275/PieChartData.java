@@ -15,28 +15,29 @@ public class PieChartData {
      * We should write code to test what happens if the database is empty.
      */
     protected static PieDataset readChinookDataset() {
-        DefaultPieDataset dataset = new DefaultPieDataset( );
+        DefaultPieDataset dataset = new DefaultPieDataset();
         /* Create SQLite Database Connection */
-        Connection conn = null;
+//        Connection conn = null;
         try {
-            Statement statement = Connection.Connecting();
-
-            ResultSet resultSet = statement.executeQuery("select * from Invoices" );
-            while( resultSet.next() ) {
+//            // db parameters
+//            String url = "jdbc:sqlite:chinook.db";
+//            // create a connection to the database
+//            conn = DriverManager.getConnection(url);
+//            System.out.println("Connection to SQLite has been established.");
+//            Statement statement = conn.createStatement();
+//
+//            ResultSet resultSet = statement.executeQuery("select * from Invoices");
+            ResultSet resultSet = Connecting.main(new String[]{"hello world"});
+            while (resultSet.next()) {
                 String country = resultSet.getString("BillingCountry");
                 Double val = resultSet.getDouble("Total");
-                if (dataset.getKeys().contains(country)) {
-                    val += (double) dataset.getValue(country);
-                }
                 dataset.setValue(country, val);
             }
 
-           // conn.close();
-            Connection.extracted();
+//            conn.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return dataset;
     }
 }
-
