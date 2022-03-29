@@ -5,48 +5,6 @@ import java.sql.*;
 
 public class PieChartData {
 
-    //Create a separate fields for DefaultPieDataset, ResultSet and Connection class
-    private static DefaultPieDataset dataset;
-    private static ResultSet resultSet;
-    private static Connection conn;
-
-    //Constructor
-    public PieChartData(DefaultPieDataset dataset, ResultSet resultSet, Connection conn){
-        this.dataset = dataset;
-        this.resultSet = resultSet;
-        this.conn = conn;
-    }
-
-    /*
-    Param: String
-    Return: Connection
-    -This method take a String as parameter to create and return a connection
-     based on the url in that String
-     */
-    public static Connection getConn(String url){
-        try{
-            Connection connection = null;
-            return connection = DriverManager.getConnection(url);
-        }catch (SQLException e){
-
-        }
-        return null;
-    }
-
-    /*
-    Param: ResultSet, Connection
-    Return: resultSet after connection has been established
-    - This method create and return a resultSet after connecting to the database
-    */
-    public static ResultSet getResultSet(ResultSet resultSet, Connection conn1){
-        try{
-            Statement statement = conn1.createStatement();
-            return resultSet = statement.executeQuery("select * from Invoices" );
-        }catch (SQLException e){
-
-        }
-        return null;
-    }
 
     /*
     Param: DefaultPieDataset, ResultSet, Connection
@@ -54,7 +12,7 @@ public class PieChartData {
     -This method will read the resultSet and use its inputs to create a dataset that will
      represent the Pie Chart based on the database
     */
-    public static void createDataset(DefaultPieDataset dataset, ResultSet resultSet, Connection conn){
+    public static void createDataset(DefaultPieDataset dataset, Connection conn, ResultSet resultSet){
         try {
             while (resultSet.next()) {
                 // country:  Category
@@ -73,7 +31,7 @@ public class PieChartData {
                 dataset.setValue(country, val);
             }
             //Disconnection
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -86,14 +44,81 @@ public class PieChartData {
     // as a wrapper that simply call other methods, without changing the behavior.
     public static PieDataset readChinookDataset() {
         //initialize dataset
-        dataset = new DefaultPieDataset();
-        String url = "jdbc:sqlite:chinook.db";
+        DefaultPieDataset dataset = new DefaultPieDataset();
 
-        conn = getConn(url);                            //Get Connection
-        resultSet = getResultSet(resultSet, conn);      //Get ResultSet based on successful Connection
-        createDataset(dataset, resultSet, conn);        //Sorting and store the result in dataset.
+
+        Connecting connection = new Connecting();
+        Connection conn = connection.getConn();
+        ResultSet resultSet = connection.getResultSet();
+        createDataset(dataset, conn, resultSet);
+        connection.closeConn();
 
         //return dataset
         return dataset;
     }
 }
+
+// This is from the readChinook method{
+// //String url = "jdbc:sqlite:chinook.db";
+////        conn = getConn(url);                            //Get Connection
+////        resultSet = getResultSet(resultSet, conn);      //Get ResultSet based on successful Connection
+////        createDataset(dataset, resultSet, conn);        //Sorting and store the result in dataset.
+// }
+
+//Create a separate fields for DefaultPieDataset, ResultSet and Connection class
+//    private DefaultPieDataset dataset;
+//    private ResultSet resultSet;
+//    private Connection conn;
+//
+//    //Constructor for mocking
+//    public PieChartData(ResultSet resultSet, Connection conn){
+//        this.dataset = new DefaultPieDataset();
+//        this.resultSet = resultSet;
+//        this.conn = conn;
+//    }
+//
+//    // Constructor when using the database
+//    public PieChartData(){
+//        this.dataset = new DefaultPieDataset();
+//        this.resultSet = null;
+//        this.conn = null;
+//    }
+//
+//    /*
+//    Param: String
+//    Return: Connection
+//    -This method take a String as parameter to create and return a connection
+//     based on the url in that String
+//     */
+//    public void getConn(){
+//        try{
+//            if(conn == null)
+//                conn = DriverManager.getConnection("jdbc:sqlite:chinook.db");
+//            else
+//                return;
+////            Connection connection = null;
+////            return connection = DriverManager.getConnection(url);
+//        }catch (SQLException e){
+//
+//        }
+//    }
+//
+//    /*
+//    Param: ResultSet, Connection
+//    Return: resultSet after connection has been established
+//    - This method create and return a resultSet after connecting to the database
+//    */
+//    public void getResultSet(){
+//        try{
+//            if(resultSet == null) {
+//                Statement statement = conn.createStatement();
+//                resultSet = statement.executeQuery("select * from Invoices");
+//            }
+//            else
+//                return;
+////            Statement statement = conn1.createStatement();
+////            return resultSet = statement.executeQuery("select * from Invoices" );
+//        }catch (SQLException e){
+//
+//        }
+//    }
