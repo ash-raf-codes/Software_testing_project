@@ -25,7 +25,7 @@ class PieChartDataTest {
 
     //test1 & test2 are written by mocking a DAO and editing what ash started - Myfanwy
     @Test
-    void test1(){
+    void testWithMocksOneValuePerCountry(){
         dao = mock(PieChartDataDAO.class); //mock the dao
         Entry eTest = new Entry("Canada", 100.0); //one entry to put into the dao and list
 
@@ -40,7 +40,7 @@ class PieChartDataTest {
     }
 
     @Test
-    void test2(){
+    void testWithMocksOneValuePerCountrySimplified(){
         dao = mock(PieChartDataDAO.class);
         when(dao.getData()).thenReturn(List.of(new Entry("Canada", 100.0)));
         res = new DefaultPieDataset();
