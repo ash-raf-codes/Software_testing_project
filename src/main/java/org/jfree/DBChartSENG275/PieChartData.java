@@ -12,7 +12,7 @@ public class PieChartData {
     -This method will read the resultSet and use its inputs to create a dataset that will
      represent the Pie Chart based on the database
     */
-    public static void createDataset(DefaultPieDataset dataset, Connection conn, ResultSet resultSet){
+    public static void createDataset(DefaultPieDataset dataset, ResultSet resultSet){
         try {
             while (resultSet.next()) {
                 // country:  Category
@@ -50,7 +50,7 @@ public class PieChartData {
         Connecting connection = new Connecting();
         Connection conn = connection.getConn();
         ResultSet resultSet = connection.getResultSet();
-        createDataset(dataset, conn, resultSet);
+        createDataset(dataset, resultSet);
         connection.closeConn();
 
         //return dataset
