@@ -1,7 +1,6 @@
 package org.jfree.DBChartSENG275;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
