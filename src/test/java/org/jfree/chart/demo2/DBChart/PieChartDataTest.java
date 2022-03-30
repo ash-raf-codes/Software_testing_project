@@ -185,7 +185,32 @@ class PieChartDataTest {
 
     }
 
+    //Jasraj's test, checking with negative numbers
+    @Test
+    void test_negative_numbers_integers(){
 
+        Entry one = new Entry("Canada", -1);
+        Entry two = new Entry("Germany", -1000);
+        Entry three = new Entry("India", -50);
+
+
+        List<Entry> list1 = new ArrayList<>();
+
+        list1.add(one);
+        list1.add(two);
+        list1.add(three);
+
+        dao = mock(PieChartDataDAO.class);
+
+        when(dao.getData()).thenReturn(list1);
+
+        defaultPieDataset = new DefaultPieDataset();
+
+        defaultPieDataset.setValue(one.getCountry(), one.getValue());
+        defaultPieDataset.setValue(two.getCountry(), two.getValue());
+        defaultPieDataset.setValue(three.getCountry(), three.getValue());
+        assertThat(pieChartData.createDataset(dao.getData())).isEqualTo(defaultPieDataset);
+    }
 
 }
 
