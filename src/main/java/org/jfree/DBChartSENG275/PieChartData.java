@@ -48,7 +48,7 @@ public class PieChartData {
 
 
         Connecting connection = new Connecting();
-        Connection conn = connection.getConn();
+        connection.getConn();
         ResultSet resultSet = connection.getResultSet();
         createDataset(dataset, resultSet);
         connection.closeConn();
