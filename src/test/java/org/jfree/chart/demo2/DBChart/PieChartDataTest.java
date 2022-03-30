@@ -19,8 +19,8 @@ import static org.mockito.Mockito.when;
 class PieChartDataTest {
 
     private PieChartDataDAO dao;
-    private PieChartData data;
-    private DefaultPieDataset res;
+    private PieChartData pieChartData;
+    private DefaultPieDataset defaultPieDataset;
 
 
     //test1 & test2 are written by mocking a DAO and editing what ash started - Myfanwy
@@ -30,26 +30,23 @@ class PieChartDataTest {
         Entry eTest = new Entry("Canada", 100.0); //one entry to put into the dao and list
 
         when(dao.getData()).thenReturn(List.of(eTest)); //return a list as the dao should
-        res = new DefaultPieDataset();
-        res.setValue(eTest.getCountry(), eTest.getValue()); //set up the DefaultPieDataSet
+        defaultPieDataset = new DefaultPieDataset();
+        defaultPieDataset.setValue(eTest.getCountry(), eTest.getValue()); //set up the DefaultPieDataSet
 
         DefaultPieDataset actualResults = new DefaultPieDataset();
-        actualResults = data.createDataset(dao.getData());
+        actualResults = pieChartData.createDataset(dao.getData());
 
-        assertEquals(actualResults,res);
+        assertEquals(actualResults,defaultPieDataset);
     }
 
     @Test
     void testWithMocksOneValuePerCountrySimplified(){
         dao = mock(PieChartDataDAO.class);
         when(dao.getData()).thenReturn(List.of(new Entry("Canada", 100.0)));
-        res = new DefaultPieDataset();
-        res.setValue("Canada", 100.0);
-        assertEquals(data.createDataset(dao.getData()),res);
+        defaultPieDataset = new DefaultPieDataset();
+        defaultPieDataset.setValue("Canada", 100.0);
+        assertEquals(pieChartData.createDataset(dao.getData()),defaultPieDataset);
     }
-
-    private PieChartData pieChartData;
-    private DefaultPieDataset defaultPieDataset;
 
     //test when there is only one value per country - Myfanwy
     @Test
