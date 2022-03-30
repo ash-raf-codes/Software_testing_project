@@ -3,7 +3,7 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import java.sql.*;
 
-
+/* Initial work. NOT USING THIS CLASS ANYMORE */
 public class Connecting {
 
     //private DefaultPieDataset dataset;
