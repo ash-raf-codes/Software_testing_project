@@ -5,6 +5,11 @@ import java.sql.*;
 
 public class PieChartData {
 
+    private static Connecting conn;
+
+    public PieChartData(Connecting conn){
+        this.conn = conn;
+    }
 
     /*
     Param: DefaultPieDataset, ResultSet, Connection
@@ -45,13 +50,12 @@ public class PieChartData {
     public static PieDataset readChinookDataset() {
         //initialize dataset
         DefaultPieDataset dataset = new DefaultPieDataset();
-
-
-        Connecting connection = new Connecting();
-        connection.getConn();
-        ResultSet resultSet = connection.getResultSet();
+        if(conn == null)
+            conn = new Connecting();
+        conn.getConn();
+        ResultSet resultSet = conn.getResultSet();
         createDataset(dataset, resultSet);
-        connection.closeConn();
+        conn.closeConn();
 
         //return dataset
         return dataset;

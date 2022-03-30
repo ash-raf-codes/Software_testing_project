@@ -53,8 +53,7 @@ public class Connecting {
                 Statement statement = conn.createStatement();
                 this.resultSet = statement.executeQuery("select * from Invoices");
             }
-//            Statement statement = conn1.createStatement();
-//            return resultSet = statement.executeQuery("select * from Invoices" );
+
         } catch (SQLException e) {}
 
         return this.resultSet;
