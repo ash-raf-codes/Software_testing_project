@@ -32,6 +32,7 @@
 
 package org.jfree.chart.demo2;
 
+import org.jfree.DBChartSENG275.PieChartData;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -41,10 +42,12 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.ui.ApplicationFrame;
+import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.chart.ui.UIUtils;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -61,28 +64,10 @@ public class BarChartDemo1 extends ApplicationFrame {
      */
     public BarChartDemo1(String title) {
         super(title);
-        CategoryDataset dataset = createDataset();
-        JFreeChart chart = createChart(dataset);
-        ChartPanel chartPanel = new ChartPanel(chart, false);
-        chartPanel.setFillZoomRectangle(true);
-        chartPanel.setMouseWheelEnabled(true);
-        chartPanel.setPreferredSize(new Dimension(500, 270));
-        setContentPane(chartPanel);
+        setContentPane(createDemoPanel());
+
     }
 
-    /**
-     * Returns a sample dataset.
-     *
-     * @return The dataset.
-     */
-    private static CategoryDataset createDataset() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(7445, "JFreeSVG", "Warm-up");
-        dataset.addValue(24448, "Batik", "Warm-up");
-        dataset.addValue(4297, "JFreeSVG", "Test");
-        dataset.addValue(21022, "Batik", "Test");
-        return dataset;
-    }
 
     /**
      * Creates a sample chart.
@@ -93,10 +78,9 @@ public class BarChartDemo1 extends ApplicationFrame {
      */
     private static JFreeChart createChart(CategoryDataset dataset) {
         JFreeChart chart = ChartFactory.createBarChart(
-            "Performance: JFreeSVG vs Batik", null /* x-axis label*/, 
-                "Milliseconds" /* y-axis label */, dataset);
-        chart.addSubtitle(new TextTitle("Time to generate 1000 charts in SVG " 
-                + "format (lower bars = better performance)"));
+            "Smart Phones Manufactured / Q3 2011", null /* x-axis label*/,
+                "Total" /* y-axis label */, dataset);
+
         chart.setBackgroundPaint(Color.WHITE);
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
 
@@ -108,13 +92,24 @@ public class BarChartDemo1 extends ApplicationFrame {
         return chart;
     }
 
+    public static JPanel createDemoPanel() {
+        // SENG 275: Task: currently testing this application relies on a database - use mocks to replace the dependency on the database
+        // Use the concepts you have learned about dependency injection for the mocking
+        JFreeChart chart = createChart(BarChartData.readChinookDataset());
+        chart.setPadding(new RectangleInsets(4, 8, 2, 2));
+        ChartPanel panel = new ChartPanel(chart, false);
+        panel.setMouseWheelEnabled(true);
+        panel.setPreferredSize(new Dimension(600, 300));
+        return panel;
+    }
+
     /**
      * Starting point for the demonstration application.
      *
      * @param args  ignored.
      */
     public static void main(String[] args) {
-        BarChartDemo1 demo = new BarChartDemo1("JFreeChart: BarChartDemo1.java");
+        BarChartDemo1 demo = new BarChartDemo1("Smart Phones Manufactured / Q3 2011");
         demo.pack();
         UIUtils.centerFrameOnScreen(demo);
         demo.setVisible(true);
