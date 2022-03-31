@@ -13,9 +13,9 @@ public class BarChartDataDAO {
             System.out.println("Connection to SQLite has been established.");
 
             Statement statement = conn.createStatement( );
-            ResultSet resultSet = statement.executeQuery("select * from Invoices" );
+            ResultSet resultSet = statement.executeQuery("select BillingCity, BillingCountry,Total from Invoices" );
             while( resultSet.next() ) {
-                Entry oneEntry = new Entry(resultSet.getInt("Total"), resultSet.getString("BillingCity"), resultSet.getString("BillingCountry"));
+                Entry oneEntry = new Entry(resultSet.getDouble("Total"), resultSet.getString("BillingCity"), resultSet.getString("BillingCountry"));
                 wholeDataset.add(oneEntry);
             }
             conn.close();

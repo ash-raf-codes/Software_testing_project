@@ -11,7 +11,7 @@ public class BarChartData {
 
     public static DefaultCategoryDataset createDataSet(List<Entry> DBEntries){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (int i = 0; i < DBEntries.size(); i++) {
+        for (int i = 0; i < 50; i++) {
 
 
             double value = DBEntries.get(i).getValue();
