@@ -88,6 +88,9 @@ public class BarChartDemo1 extends ApplicationFrame {
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
         renderer.setDrawBarOutline(false);
+
+
+
         chart.getLegend().setFrame(BlockBorder.NONE);
         return chart;
     }
@@ -99,7 +102,7 @@ public class BarChartDemo1 extends ApplicationFrame {
         chart.setPadding(new RectangleInsets(4, 8, 2, 2));
         ChartPanel panel = new ChartPanel(chart, false);
         panel.setMouseWheelEnabled(true);
-        panel.setPreferredSize(new Dimension(600, 300));
+        panel.setPreferredSize(new Dimension(12000, 600));
         return panel;
     }
 

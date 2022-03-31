@@ -12,13 +12,20 @@ public class BarChartData {
     public static DefaultCategoryDataset createDataSet(List<Entry> DBEntries){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < DBEntries.size(); i++) {
-            int value = DBEntries.get(i).getValue();
+
+
+            double value = DBEntries.get(i).getValue();
+
             String rowkey    =   DBEntries.get(i).getRowkey();
             String columnkey =   DBEntries.get(i).getColumnkey();
-            if (dataset.getColumnKeys().contains(rowkey)){
-                value += (int) dataset.getValue(rowkey, columnkey);
+
+            if(value!= 0 || columnkey != null || rowkey!= null ) {
+                if (dataset.getColumnKeys().contains(rowkey)) {
+                    value += (double) dataset.getValue(rowkey, columnkey);
+                }
+                dataset.addValue(value, rowkey, columnkey);
             }
-            dataset.addValue(value, rowkey, columnkey);
+
         }
         return dataset;
     }
