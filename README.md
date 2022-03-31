@@ -1,6 +1,10 @@
 # SENG 275 Project Description
 ## Spring 2022
-## Updated March 25th, 2022! 
+## Updated March 31th, 2022! 
+
+Update: you now have a Part_2_Plan.txt file in your top-level directory - use this to document your plans for part 2.  Which chart type will you use, and what are you planning to use from the database?  How will you divide up the work?
+
+You also have a new package folder in the src/main tree of your repository, named SENG275_Part2.  Write your application for Part 2 in this package.
 
 ## Learning Objectives and Project Overview
 

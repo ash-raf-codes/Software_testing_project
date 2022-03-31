@@ -1,0 +1,7 @@
+Use this file to document your plans for Part 2.
+
+    - What chart type are you using?
+    - What data will you be using from the database?
+    - How will you divide the work between your group members?
+    - Anything else you wish to write to keep things clear.
+    
