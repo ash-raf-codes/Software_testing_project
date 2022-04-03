@@ -11,7 +11,7 @@ public class BarChartData {
 
     public static DefaultCategoryDataset createDataSet(List<Entry> DBEntries){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < DBEntries.size(); i++) {
 
 
             double value = DBEntries.get(i).getValue();
@@ -19,7 +19,7 @@ public class BarChartData {
             String rowkey    =   DBEntries.get(i).getRowkey();
             String columnkey =   DBEntries.get(i).getColumnkey();
 
-            if(value!= 0 || columnkey != null || rowkey!= null ) {
+            if(value > 0 && columnkey != null && rowkey!= null ) { // S M Ashraf: I made some logic change here, if anyone of those fields has an invalid value, we dont want to show it in the graph
                 if (dataset.getColumnKeys().contains(rowkey)) {
                     value += (double) dataset.getValue(rowkey, columnkey);
                 }

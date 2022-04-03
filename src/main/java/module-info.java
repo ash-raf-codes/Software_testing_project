@@ -7,6 +7,7 @@ module org.jfree.demos {
     requires org.jfree.chart3d;
     requires com.formdev.flatlaf;
     requires java.sql;
+    requires org.mockito;
     exports com.orsoncharts.demo;
     exports org.jfree.pdf.demo;
     exports org.jfree.chart.demo2;
